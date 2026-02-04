@@ -31,10 +31,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         body: JSON.stringify({ email, password })
       });
 
-      if (!res.ok) return false;
+      if (!res.ok) {
+        console.error('Erro no login:', res.statusText);
+        return false;
+      }
 
       const data = await res.json();
       const { token, user } = data;
+
+      if (!token || !user) return false;
 
       localStorage.setItem('privacy_session', JSON.stringify(user));
       localStorage.setItem('privacy_token', token);
@@ -42,7 +47,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       return true;
     } catch (err) {
-      console.error(err);
+      console.error('Erro de conexão no login:', err);
       return false;
     }
   };
@@ -55,10 +60,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         body: JSON.stringify({ name, email, password })
       });
 
-      if (!res.ok) return false;
+      if (!res.ok) {
+        console.error('Erro no cadastro:', res.statusText);
+        return false;
+      }
 
       const data = await res.json();
       const { token, user } = data;
+
+      if (!token || !user) return false;
 
       localStorage.setItem('privacy_session', JSON.stringify(user));
       localStorage.setItem('privacy_token', token);
@@ -66,7 +76,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       return true;
     } catch (err) {
-      console.error(err);
+      console.error('Erro de conexão no cadastro:', err);
       return false;
     }
   };
