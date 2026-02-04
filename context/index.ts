@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import path from 'path';
-import pool from './context/db'; // conexão com Neon
+import pool from './db';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
