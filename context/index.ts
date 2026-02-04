@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import pool from './context/db'; // conexão com Neon
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -31,8 +32,12 @@ app.post('/auth/register', async (req, res) => {
 
     res.status(201).json({ user, token });
   } catch (err: any) {
-    console.error(err);
-    res.status(400).json({ error: 'Usuário já existe ou erro no cadastro' });
+    console.error('Erro no cadastro:', err);
+    if (err.code === '23505') {
+      res.status(400).json({ error: 'E-mail já está em uso' });
+    } else {
+      res.status(500).json({ error: 'Erro no servidor ao cadastrar', details: err.message });
+    }
   }
 });
 
@@ -64,12 +69,19 @@ app.post('/auth/login', async (req, res) => {
 
     res.json({ user: { id: user.id, name: user.name, email: user.email }, token });
   } catch (err: any) {
-    console.error(err);
-    res.status(500).json({ error: 'Erro no servidor ao fazer login' });
+    console.error('Erro no login:', err);
+    res.status(500).json({ error: 'Erro no servidor ao fazer login', details: err.message });
   }
 });
 
-const PORT = process.env.PORT || 5000;
+// servir frontend (build do Vite)
+const distPath = path.join(__dirname, 'dist');
+app.use(express.static(distPath));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
