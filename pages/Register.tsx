@@ -29,9 +29,10 @@ const Register: React.FC = () => {
       if (success) {
         navigate('/');
       } else {
-        setError('Este e-mail já está em uso.');
+        setError('Este e-mail já está em uso ou ocorreu um erro.');
       }
     } catch (err) {
+      console.error(err);
       setError('Ocorreu um erro ao criar a conta.');
     } finally {
       setIsSubmitting(false);
