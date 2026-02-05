@@ -5,7 +5,7 @@ import Home from './pages/Home';
 import ProductDetail from './pages/ProductDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { PRODUCTS } from './data';
+import { PACKS } from './data';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const AuthenticatedApp: React.FC = () => {
