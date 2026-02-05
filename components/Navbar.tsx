@@ -14,13 +14,13 @@ const Navbar: React.FC<NavbarProps> = () => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-darker border-b border-zinc-800">
       <div className="max-w-5xl mx-auto px-4">
-        <div className="flex items-center justify-between h-40"> {/* altura da navbar aumentada */}
+        <div className="flex items-center justify-between h-48"> {/* altura da navbar aumentada */}
           {/* Logo bem grande */}
           <Link to="/" className="flex items-center">
             <img 
               src={logo} 
               alt="Onlyfoot Logo"
-              className="h-36 w-auto" // logo 4x maior
+              className="h-40 w-auto" // logo 3x maior
             />
           </Link>
 
@@ -32,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 <p className="text-sm font-medium text-white">{user?.name}</p>
                 <p className="text-xs text-zinc-500">Membro</p>
               </div>
-              <div className="w-12 h-12 bg-zinc-700 rounded-full overflow-hidden border-2 border-transparent hover:border-primary transition-all">
+              <div className="w-14 h-14 bg-zinc-700 rounded-full overflow-hidden border-2 border-transparent hover:border-primary transition-all">
                 <img 
                   src={`https://ui-avatars.com/api/?name=${user?.name || 'User'}&background=random`} 
                   alt="Profile" 
@@ -44,10 +44,10 @@ const Navbar: React.FC<NavbarProps> = () => {
             {/* Logout */}
             <button 
               onClick={logout}
-              className="p-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full transition-colors"
+              className="p-4 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full transition-colors"
               title="Sair"
             >
-              <LogOut className="h-7 w-7" />
+              <LogOut className="h-8 w-8" />
             </button>
           </div>
         </div>
