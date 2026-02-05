@@ -2,15 +2,16 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import PackDetail from './pages/PackDetail'; // corrigido
+import PackDetail from './pages/PackDetail';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import { PACKS } from './data'; // corrigido
+import LandingPage from './pages/LandingPage'; // nova página inicial pública
+import { PACKS } from './data';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const AuthenticatedApp: React.FC = () => {
   const { user, isLoading } = useAuth();
-  const [purchasedSlugs, setPurchasedSlugs] = useState<string[]>([]); // corrigido
+  const [purchasedSlugs, setPurchasedSlugs] = useState<string[]>([]);
   const [balance, setBalance] = useState(150.00);
 
   // Load user-specific data
@@ -22,13 +23,13 @@ const AuthenticatedApp: React.FC = () => {
       if (savedPurchases) {
         setPurchasedSlugs(JSON.parse(savedPurchases));
       } else {
-        setPurchasedSlugs([]); // Reset if no data
+        setPurchasedSlugs([]);
       }
 
       if (savedBalance) {
         setBalance(parseFloat(savedBalance));
       } else {
-        setBalance(150.00); // Reset to default if no data
+        setBalance(150.00);
       }
     }
   }, [user]);
@@ -56,16 +57,19 @@ const AuthenticatedApp: React.FC = () => {
     return <div className="min-h-screen bg-darker flex items-center justify-center text-white">Carregando...</div>;
   }
 
+  // --- Parte pública (sem login) ---
   if (!user) {
     return (
       <Routes>
+        <Route path="/" element={<LandingPage />} /> {/* Landing antes do login */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     );
   }
 
+  // --- Parte autenticada ---
   return (
     <div className="min-h-screen bg-darker text-slate-200 font-sans selection:bg-primary/30 selection:text-primary">
       <Navbar balance={balance} />
@@ -73,10 +77,10 @@ const AuthenticatedApp: React.FC = () => {
       <Routes>
         <Route 
           path="/" 
-          element={<Home packs={PACKS} purchasedSlugs={purchasedSlugs} />} // corrigido
+          element={<Home packs={PACKS} purchasedSlugs={purchasedSlugs} />} 
         />
         <Route 
-          path="/pack/:slug" // corrigido
+          path="/pack/:slug" 
           element={
             <PackDetail 
               packs={PACKS} 
