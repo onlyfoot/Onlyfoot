@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { LayoutGrid, Sparkles } from 'lucide-react';
+import { LayoutGrid, Sparkles, Image as ImageIcon, Video as VideoIcon } from 'lucide-react';
 import { Pack } from '../types';
 import PackCard from '../components/PackCard';
 
@@ -33,17 +33,14 @@ const Home: React.FC<HomeProps> = ({ packs, purchasedSlugs }) => {
               <div 
                 key={`preview-${pack.slug}`} 
                 className="flex-none w-64 sm:w-80 aspect-[16/10] relative rounded-xl overflow-hidden snap-center border border-zinc-800 group cursor-pointer hover:border-primary/50 transition-all select-none"
-                onContextMenu={(e) => e.preventDefault()} // Prevent right-click context menu
+                onContextMenu={(e) => e.preventDefault()} 
               >
-                {/* Unblurred Image for Preview */}
                 <img 
                   src={pack.thumbnailUrl} 
                   alt={pack.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none" 
                   draggable={false}
                 />
-                
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-4">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full p-[1px] bg-primary">
@@ -59,7 +56,7 @@ const Home: React.FC<HomeProps> = ({ packs, purchasedSlugs }) => {
       </div>
 
       {/* Main Grid */}
-      <div className="max-w-7xl mx-auto px-4 py-4">
+      <div className="max-w-7xl mx-auto px-4 py-4 space-y-12">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
             <LayoutGrid className="h-5 w-5 text-primary" />
@@ -69,15 +66,39 @@ const Home: React.FC<HomeProps> = ({ packs, purchasedSlugs }) => {
         </div>
 
         {filteredPacks.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
-            {filteredPacks.map(pack => (
-              <PackCard 
-                key={pack.slug} 
-                pack={pack} 
-                isPurchased={purchasedSlugs.includes(pack.slug)} 
-              />
-            ))}
-          </div>
+          <>
+            {/* Seção de Fotos */}
+            <div>
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <ImageIcon className="h-5 w-5 text-primary" /> Packs de Fotos
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+                {filteredPacks.filter(pack => pack.photos).map(pack => (
+                  <PackCard 
+                    key={pack.slug} 
+                    pack={pack} 
+                    isPurchased={purchasedSlugs.includes(pack.slug)} 
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Seção de Vídeos */}
+            <div>
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <VideoIcon className="h-5 w-5 text-primary" /> Packs de Vídeos
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+                {filteredPacks.filter(pack => pack.videos).map(pack => (
+                  <PackCard 
+                    key={pack.slug} 
+                    pack={pack} 
+                    isPurchased={purchasedSlugs.includes(pack.slug)} 
+                  />
+                ))}
+              </div>
+            </div>
+          </>
         ) : (
           <div className="text-center py-20 bg-zinc-900/30 rounded-xl border border-zinc-800 border-dashed">
             <p className="text-zinc-500">Nenhum conteúdo encontrado.</p>
