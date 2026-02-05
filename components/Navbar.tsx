@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import logo from './Onlyfoot.png'; // sua logo dentro de components
@@ -18,40 +18,19 @@ const Navbar: React.FC<NavbarProps> = () => {
         <div className="flex items-center justify-between h-20">
           
           {/* Logo menor e alinhada à esquerda */}
-          <NavLink to="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img 
               src={logo} 
               alt="Onlyfoot Logo"
               className="h-14 w-auto" // logo proporcional
             />
-          </NavLink>
+          </Link>
 
           {/* Links principais */}
           <div className="hidden md:flex items-center gap-8 text-white font-medium">
-            <NavLink 
-              to="/galeria" 
-              className={({ isActive }) => 
-                isActive ? "text-primary font-bold" : "hover:text-primary"
-              }
-            >
-              Galeria
-            </NavLink>
-            <NavLink 
-              to="/videos" 
-              className={({ isActive }) => 
-                isActive ? "text-primary font-bold" : "hover:text-primary"
-              }
-            >
-              Vídeos
-            </NavLink>
-            <NavLink 
-              to="/famosos" 
-              className={({ isActive }) => 
-                isActive ? "text-primary font-bold" : "hover:text-primary"
-              }
-            >
-              Famosos
-            </NavLink>
+            <Link to="/galeria" className="hover:text-primary">Galeria</Link>
+            <Link to="/videos" className="hover:text-primary">Vídeos</Link>
+            <Link to="/famosos" className="hover:text-primary">Famosos</Link>
           </div>
 
           {/* Perfil & Logout */}
