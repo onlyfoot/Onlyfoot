@@ -2,12 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import logo from './Onlyfoot.png'; // importa a logo da pasta components
 
 interface NavbarProps {
   balance: number;
 }
 
-const Navbar: React.FC<NavbarProps> = () => {
+const Navbar: React.FC<NavbarProps> = ({ balance }) => {
   const { logout, user } = useAuth();
 
   return (
@@ -17,17 +18,23 @@ const Navbar: React.FC<NavbarProps> = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
             <img 
-              src="/logo.png" // coloque aqui o caminho da sua imagem
+              src={logo} 
               alt="Onlyfoot Logo"
-              className="h-8 w-auto" // ajusta o tamanho da logo
+              className="h-8 w-auto" 
             />
             <span className="text-xl font-bold text-white tracking-tight">
               Onlyfoot
             </span>
           </Link>
 
-          {/* Profile & Logout */}
-          <div className="flex items-center gap-4">
+          {/* Balance + Profile & Logout */}
+          <div className="flex items-center gap-6">
+            {/* Balance */}
+            <div className="text-sm font-semibold text-white bg-primary/10 px-3 py-1 rounded-lg border border-primary/20">
+              Saldo: R$ {balance.toFixed(2)}
+            </div>
+
+            {/* Profile */}
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
                 <p className="text-sm font-medium text-white">{user?.name}</p>
@@ -42,6 +49,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               </div>
             </div>
             
+            {/* Logout */}
             <button 
               onClick={logout}
               className="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full transition-colors"
