@@ -2,30 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import PackDetail from './pages/PackDetail';
+import PackDetail from './pages/PackDetail'; // corrigido
 import Login from './pages/Login';
 import Register from './pages/Register';
-import LandingPage from './pages/LandingPage'; // página inicial pública
-import { PACKS } from './data';
+import { PACKS } from './data'; // corrigido
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const AuthenticatedApp: React.FC = () => {
   const { user, isLoading } = useAuth();
-  const [purchasedSlugs, setPurchasedSlugs] = useState<string[]>([]);
+  const [purchasedSlugs, setPurchasedSlugs] = useState<string[]>([]); // corrigido
   const [balance, setBalance] = useState(150.00);
 
-  // Carregar dados específicos do usuário
+  // Load user-specific data
   useEffect(() => {
     if (user) {
       const savedPurchases = localStorage.getItem(`privacy_purchases_${user.id}`);
       const savedBalance = localStorage.getItem(`privacy_balance_${user.id}`);
       
-      setPurchasedSlugs(savedPurchases ? JSON.parse(savedPurchases) : []);
-      setBalance(savedBalance ? parseFloat(savedBalance) : 150.00);
+      if (savedPurchases) {
+        setPurchasedSlugs(JSON.parse(savedPurchases));
+      } else {
+        setPurchasedSlugs([]); // Reset if no data
+      }
+
+      if (savedBalance) {
+        setBalance(parseFloat(savedBalance));
+      } else {
+        setBalance(150.00); // Reset to default if no data
+      }
     }
   }, [user]);
 
-  // Salvar dados específicos do usuário
+  // Save user-specific data
   useEffect(() => {
     if (user) {
       localStorage.setItem(`privacy_purchases_${user.id}`, JSON.stringify(purchasedSlugs));
@@ -45,26 +53,19 @@ const AuthenticatedApp: React.FC = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className="min-h-screen bg-darker flex items-center justify-center text-white">
-        Carregando...
-      </div>
-    );
+    return <div className="min-h-screen bg-darker flex items-center justify-center text-white">Carregando...</div>;
   }
 
-  // --- Parte pública (sem login) ---
   if (!user) {
     return (
       <Routes>
-        <Route path="/" element={<LandingPage />} /> {/* Landing antes do login */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
     );
   }
 
-  // --- Parte autenticada ---
   return (
     <div className="min-h-screen bg-darker text-slate-200 font-sans selection:bg-primary/30 selection:text-primary">
       <Navbar balance={balance} />
@@ -72,10 +73,10 @@ const AuthenticatedApp: React.FC = () => {
       <Routes>
         <Route 
           path="/" 
-          element={<Home packs={PACKS} purchasedSlugs={purchasedSlugs} />} 
+          element={<Home packs={PACKS} purchasedSlugs={purchasedSlugs} />} // corrigido
         />
         <Route 
-          path="/pack/:slug" 
+          path="/pack/:slug" // corrigido
           element={
             <PackDetail 
               packs={PACKS} 
