@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { LayoutGrid, Sparkles } from 'lucide-react';
-import { Product } from '../types';
-import ProductCard from '../components/ProductCard';
+import { Pack } from '../types';
+import PackCard from '../components/PackCard';
 
 interface HomeProps {
-  products: Product[];
-  purchasedIds: string[];
+  packs: Pack[];
+  purchasedSlugs: string[];
 }
 
-const Home: React.FC<HomeProps> = ({ products, purchasedIds }) => {
+const Home: React.FC<HomeProps> = ({ packs, purchasedSlugs }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('Todos');
 
-  const filteredProducts = products.filter(product => {
+  const filteredPacks = packs.filter(pack => {
     if (selectedCategory === 'Todos') return true;
-    if (selectedCategory === 'VIP') return product.price > 30;
-    return product.category === selectedCategory;
+    if (selectedCategory === 'VIP') return pack.price > 30;
+    return pack.category === selectedCategory;
   });
 
   return (
@@ -29,17 +29,17 @@ const Home: React.FC<HomeProps> = ({ products, purchasedIds }) => {
           </h2>
           
           <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar snap-x snap-mandatory">
-            {products.map((product) => (
+            {packs.map((pack) => (
               <div 
-                key={`preview-${product.id}`} 
+                key={`preview-${pack.slug}`} 
                 className="flex-none w-64 sm:w-80 aspect-[16/10] relative rounded-xl overflow-hidden snap-center border border-zinc-800 group cursor-pointer hover:border-primary/50 transition-all select-none"
                 onContextMenu={(e) => e.preventDefault()} // Prevent right-click context menu
               >
                 {/* Unblurred Image for Preview */}
                 <img 
-                  src={product.thumbnailUrl} 
-                  alt={product.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none" // Disable pointer events on image to prevent dragging
+                  src={pack.thumbnailUrl} 
+                  alt={pack.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none" 
                   draggable={false}
                 />
                 
@@ -47,9 +47,9 @@ const Home: React.FC<HomeProps> = ({ products, purchasedIds }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent flex flex-col justify-end p-4">
                   <div className="flex items-center gap-2">
                     <div className="w-6 h-6 rounded-full p-[1px] bg-primary">
-                      <img src={product.creator.avatarUrl} className="w-full h-full rounded-full object-cover" draggable={false} />
+                      <img src={pack.creator.avatarUrl} className="w-full h-full rounded-full object-cover" draggable={false} />
                     </div>
-                    <span className="text-xs text-zinc-200 font-medium shadow-black drop-shadow-md">{product.creator.name}</span>
+                    <span className="text-xs text-zinc-200 font-medium shadow-black drop-shadow-md">{pack.creator.name}</span>
                   </div>
                 </div>
               </div>
@@ -65,16 +65,16 @@ const Home: React.FC<HomeProps> = ({ products, purchasedIds }) => {
             <LayoutGrid className="h-5 w-5 text-primary" />
             Galeria Recente
           </h2>
-          <span className="text-sm text-zinc-500">{filteredProducts.length} pacotes disponíveis</span>
+          <span className="text-sm text-zinc-500">{filteredPacks.length} pacotes disponíveis</span>
         </div>
 
-        {filteredProducts.length > 0 ? (
+        {filteredPacks.length > 0 ? (
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
-            {filteredProducts.map(product => (
-              <ProductCard 
-                key={product.id} 
-                product={product} 
-                isPurchased={purchasedIds.includes(product.id)} 
+            {filteredPacks.map(pack => (
+              <PackCard 
+                key={pack.slug} 
+                pack={pack} 
+                isPurchased={purchasedSlugs.includes(pack.slug)} 
               />
             ))}
           </div>
