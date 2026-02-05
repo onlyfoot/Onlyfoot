@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Lock, Unlock, Image as ImageIcon, Star } from 'lucide-react';
+import { Lock, Unlock, Image as ImageIcon, Star, Video as VideoIcon } from 'lucide-react';
 import { Pack } from '../types';
 
 interface PackCardProps {
@@ -53,8 +53,18 @@ const PackCard: React.FC<PackCardProps> = ({ pack, isPurchased }) => {
 
         {/* Content Type Badge */}
         <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-xs font-medium text-white flex items-center gap-1 border border-white/10">
-          <ImageIcon className="h-3 w-3" />
-          <span>{pack.photos.length}</span>
+          {pack.photos && (
+            <>
+              <ImageIcon className="h-3 w-3" />
+              <span>{pack.photos?.length}</span>
+            </>
+          )}
+          {pack.videos && (
+            <>
+              <VideoIcon className="h-3 w-3" />
+              <span>{pack.videos?.length}</span>
+            </>
+          )}
         </div>
 
         {/* Bottom Info (Overlaid) */}
