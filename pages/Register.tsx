@@ -56,32 +56,28 @@ const Register: React.FC = () => {
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <input
-                type="text"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-700 placeholder-gray-500 text-white bg-dark-800 rounded-t-md focus:outline-none focus:ring-brand-500 focus:border-brand-500 focus:z-10 sm:text-sm"
-                placeholder="Nome completo"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div>
-              <input
-                type="email"
-                required
-                className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-700 placeholder-gray-500 text-white bg-dark-800 focus:outline-none focus:ring-brand-500 focus:border-brand-500 focus:z-10 sm:text-sm"
-                placeholder="Endereço de e-mail"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
+          <div className="space-y-4">
+            <input
+              type="text"
+              required
+              className="block w-full px-3 py-3 border border-gray-700 placeholder-gray-500 text-white bg-dark-800 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm"
+              placeholder="Nome completo"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <input
+              type="email"
+              required
+              className="block w-full px-3 py-3 border border-gray-700 placeholder-gray-500 text-white bg-dark-800 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm"
+              placeholder="Endereço de e-mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-3 border border-gray-700 placeholder-gray-500 text-white bg-dark-800 rounded-b-md focus:outline-none focus:ring-brand-500 focus:border-brand-500 focus:z-10 sm:text-sm pr-10"
+                className="block w-full px-3 py-3 border border-gray-700 placeholder-gray-500 text-white bg-dark-800 rounded-md focus:outline-none focus:ring-2 focus:ring-brand-500 sm:text-sm pr-10"
                 placeholder="Senha"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -89,7 +85,7 @@ const Register: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-3 flex items-center z-20 text-gray-400 hover:text-white"
+                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-white"
               >
                 {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
               </button>
@@ -103,20 +99,18 @@ const Register: React.FC = () => {
             </div>
           )}
 
-          <div>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-bold rounded-md text-white ${
-                isSubmitting
-                  ? 'bg-gray-700 cursor-not-allowed'
-                  : 'bg-brand-600 hover:bg-brand-500'
-              } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors`}
-            >
-              {isSubmitting ? 'Criando conta...' : 'Cadastrar'}
-              {!isSubmitting && <ArrowRight className="ml-2 h-4 w-4" />}
-            </button>
-          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`group relative w-full flex justify-center py-3 px-4 text-sm font-bold rounded-md text-white ${
+              isSubmitting
+                ? 'bg-gray-700 cursor-not-allowed'
+                : 'bg-brand-600 hover:bg-brand-500'
+            } focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-500 transition-colors`}
+          >
+            {isSubmitting ? 'Criando conta...' : 'Cadastrar'}
+            {!isSubmitting && <ArrowRight className="ml-2 h-4 w-4" />}
+          </button>
 
           <div className="text-center">
             <p className="text-sm text-gray-400">
