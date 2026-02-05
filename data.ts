@@ -3,138 +3,130 @@ import { Product } from './types';
 export const PRODUCTS: Product[] = [
   {
     id: '1',
+    slug: 'maria',
     creator: {
-      name: 'Tokyo Vibes',
-      username: '@tokyo_night',
+      name: 'Maria',
+      username: '@maria',
       avatarUrl: 'https://picsum.photos/seed/avatar1/200/200',
       verified: true
     },
-    title: 'Noite em Shibuya 🌃',
-    description: 'O lado que ninguém vê da vida noturna em Tóquio. 5 fotos exclusivas sem censura da arquitetura urbana.',
+    title: 'Maria',
+    description: 'Perfil exclusivo da Maria com fotos inéditas.',
     price: 29.90,
-    category: 'Urbano',
-    tags: ['Neon', 'Noite', 'Cidade'],
-    thumbnailUrl: 'https://picsum.photos/seed/tokyo1/600/400',
+    category: 'Pessoas',
+    tags: ['Maria', 'Exclusivo'],
+    thumbnailUrl: 'https://picsum.photos/seed/maria/600/400',
     likes: 1240,
     postedAt: '2h atrás',
     photos: [
-      { id: 'p1-1', url: 'https://picsum.photos/seed/tokyo1/1200/800', caption: 'Cruzamento Shibuya' },
-      { id: 'p1-2', url: 'https://picsum.photos/seed/tokyo2/1200/800', caption: 'Beco Neon' },
-      { id: 'p1-3', url: 'https://picsum.photos/seed/tokyo3/1200/800', caption: 'Torre de Tóquio' },
-      { id: 'p1-4', url: 'https://picsum.photos/seed/tokyo4/1200/800', caption: 'Reflexos na Chuva' },
-      { id: 'p1-5', url: 'https://picsum.photos/seed/tokyo5/1200/800', caption: 'Metrô Vazio' },
+      { id: 'p1-1', url: 'https://picsum.photos/seed/maria1/1200/800', caption: 'Foto 1 da Maria' },
+      { id: 'p1-2', url: 'https://picsum.photos/seed/maria2/1200/800', caption: 'Foto 2 da Maria' }
     ]
   },
   {
     id: '2',
+    slug: 'joao',
     creator: {
-      name: 'Sarah Nature',
-      username: '@sarah_wild',
+      name: 'João',
+      username: '@joao',
       avatarUrl: 'https://picsum.photos/seed/avatar2/200/200',
       verified: true
     },
-    title: 'Banho de Cachoeira 💦',
-    description: 'Ensaio exclusivo nos Alpes Suíços. O frio não me impediu de tirar essas fotos incríveis.',
+    title: 'João',
+    description: 'Perfil exclusivo do João com fotos inéditas.',
     price: 45.00,
-    category: 'Natureza',
-    tags: ['Montanha', 'Neve', 'Inverno'],
-    thumbnailUrl: 'https://picsum.photos/seed/alps1/600/400',
+    category: 'Pessoas',
+    tags: ['João', 'Exclusivo'],
+    thumbnailUrl: 'https://picsum.photos/seed/joao/600/400',
     likes: 3500,
     postedAt: '5h atrás',
     photos: [
-      { id: 'p2-1', url: 'https://picsum.photos/seed/alps1/1200/800', caption: 'Pico Nevado' },
-      { id: 'p2-2', url: 'https://picsum.photos/seed/alps2/1200/800', caption: 'Lago Azul' },
-      { id: 'p2-3', url: 'https://picsum.photos/seed/alps3/1200/800', caption: 'Cabana na Floresta' },
+      { id: 'p2-1', url: 'https://picsum.photos/seed/joao1/1200/800', caption: 'Foto 1 do João' }
     ]
   },
   {
     id: '3',
+    slug: 'ana',
     creator: {
-      name: 'Artistic Soul',
-      username: '@art_soul',
+      name: 'Ana',
+      username: '@ana',
       avatarUrl: 'https://picsum.photos/seed/avatar3/200/200',
       verified: false
     },
-    title: 'Sessão Privada: Emoções',
-    description: 'Um estudo sobre luz e sombra. Conteúdo muito pessoal e artístico.',
+    title: 'Ana',
+    description: 'Perfil exclusivo da Ana com fotos artísticos e pessoais.',
     price: 15.50,
-    category: 'Arte',
-    tags: ['Retrato', 'Abstrato', 'Arte'],
-    thumbnailUrl: 'https://picsum.photos/seed/art1/600/400',
+    category: 'Pessoas',
+    tags: ['Ana', 'Arte'],
+    thumbnailUrl: 'https://picsum.photos/seed/ana/600/400',
     likes: 890,
     postedAt: '1d atrás',
     photos: [
-      { id: 'p3-1', url: 'https://picsum.photos/seed/art1/1200/800', caption: 'Sombra e Luz' },
-      { id: 'p3-2', url: 'https://picsum.photos/seed/art2/1200/800', caption: 'Cores Vibrantes' },
-      { id: 'p3-3', url: 'https://picsum.photos/seed/art3/1200/800', caption: 'Silhueta' },
-      { id: 'p3-4', url: 'https://picsum.photos/seed/art4/1200/800', caption: 'Olhar Profundo' },
+      { id: 'p3-1', url: 'https://picsum.photos/seed/ana1/1200/800', caption: 'Foto 1 da Ana' },
+      { id: 'p3-2', url: 'https://picsum.photos/seed/ana2/1200/800', caption: 'Foto 2 da Ana' }
     ]
   },
   {
     id: '4',
+    slug: 'carlos',
     creator: {
-      name: 'Design Master',
-      username: '@design_pro',
+      name: 'Carlos',
+      username: '@carlos',
       avatarUrl: 'https://picsum.photos/seed/avatar4/200/200',
       verified: true
     },
-    title: 'Pack de Texturas Premium',
-    description: 'Material exclusivo para assinantes. Texturas em 8K.',
+    title: 'Carlos',
+    description: 'Perfil exclusivo do Carlos com fotos inéditas.',
     price: 12.00,
-    category: 'Design',
-    tags: ['Textura', 'Minimalismo'],
-    thumbnailUrl: 'https://picsum.photos/seed/texture1/600/400',
+    category: 'Pessoas',
+    tags: ['Carlos', 'Exclusivo'],
+    thumbnailUrl: 'https://picsum.photos/seed/carlos/600/400',
     likes: 450,
     postedAt: '2d atrás',
     photos: [
-      { id: 'p4-1', url: 'https://picsum.photos/seed/texture1/1200/800', caption: 'Concreto Bruto' },
-      { id: 'p4-2', url: 'https://picsum.photos/seed/texture2/1200/800', caption: 'Papel Reciclado' },
-      { id: 'p4-3', url: 'https://picsum.photos/seed/texture3/1200/800', caption: 'Madeira Escura' },
+      { id: 'p4-1', url: 'https://picsum.photos/seed/carlos1/1200/800', caption: 'Foto 1 do Carlos' }
     ]
   },
   {
     id: '5',
+    slug: 'beatriz',
     creator: {
-      name: 'Chef Gourmet',
-      username: '@chef_secret',
+      name: 'Beatriz',
+      username: '@beatriz',
       avatarUrl: 'https://picsum.photos/seed/avatar5/200/200',
       verified: true
     },
-    title: 'O Segredo do Chef 🤫',
-    description: 'Receitas e fotos que não posto no Instagram. Veja o preparo completo.',
+    title: 'Beatriz',
+    description: 'Perfil exclusivo da Beatriz com fotos inéditas.',
     price: 35.00,
-    category: 'Comida',
-    tags: ['Comida', 'Gourmet', 'Delicioso'],
-    thumbnailUrl: 'https://picsum.photos/seed/food1/600/400',
+    category: 'Pessoas',
+    tags: ['Beatriz', 'Exclusivo'],
+    thumbnailUrl: 'https://picsum.photos/seed/beatriz/600/400',
     likes: 2100,
     postedAt: '3d atrás',
     photos: [
-      { id: 'p5-1', url: 'https://picsum.photos/seed/food1/1200/800', caption: 'Prato Principal' },
-      { id: 'p5-2', url: 'https://picsum.photos/seed/food2/1200/800', caption: 'Sobremesa' },
-      { id: 'p5-3', url: 'https://picsum.photos/seed/food3/1200/800', caption: 'Ingredientes Frescos' },
-      { id: 'p5-4', url: 'https://picsum.photos/seed/food4/1200/800', caption: 'Chef em Ação' },
+      { id: 'p5-1', url: 'https://picsum.photos/seed/beatriz1/1200/800', caption: 'Foto 1 da Beatriz' }
     ]
   },
   {
     id: '6',
+    slug: 'lucas',
     creator: {
-      name: 'Cyber Girl',
-      username: '@cyber_ai',
+      name: 'Lucas',
+      username: '@lucas',
       avatarUrl: 'https://picsum.photos/seed/avatar6/200/200',
       verified: false
     },
-    title: 'Futuro Distópico',
-    description: 'Minhas criações de IA mais ousadas. Apenas para fãs.',
+    title: 'Lucas',
+    description: 'Perfil exclusivo do Lucas com fotos inéditas.',
     price: 50.00,
-    category: 'Tech',
-    tags: ['IA', 'Futuro', 'Tecnologia'],
-    thumbnailUrl: 'https://picsum.photos/seed/tech1/600/400',
+    category: 'Pessoas',
+    tags: ['Lucas', 'Exclusivo'],
+    thumbnailUrl: 'https://picsum.photos/seed/lucas/600/400',
     likes: 5000,
     postedAt: '1sem atrás',
     photos: [
-      { id: 'p6-1', url: 'https://picsum.photos/seed/tech1/1200/800', caption: 'Rede Neural' },
-      { id: 'p6-2', url: 'https://picsum.photos/seed/tech2/1200/800', caption: 'Chip Processador' },
-      { id: 'p6-3', url: 'https://picsum.photos/seed/tech3/1200/800', caption: 'Realidade Virtual' },
+      { id: 'p6-1', url: 'https://picsum.photos/seed/lucas1/1200/800', caption: 'Foto 1 do Lucas' }
     ]
   }
 ];
