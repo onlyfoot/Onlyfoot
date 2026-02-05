@@ -15,15 +15,22 @@ const Navbar: React.FC<NavbarProps> = () => {
     <nav className="sticky top-0 z-50 w-full bg-darker border-b border-zinc-800">
       <div className="max-w-5xl mx-auto px-4">
         {/* altura reduzida da navbar */}
-        <div className="flex items-center justify-between h-28">
+        <div className="flex items-center justify-between h-24">
           {/* Logo menor e alinhada à esquerda */}
           <Link to="/" className="flex items-center">
             <img 
               src={logo} 
               alt="Onlyfoot Logo"
-              className="h-20 w-auto" // metade do tamanho original
+              className="h-16 w-auto" // logo proporcional
             />
           </Link>
+
+          {/* Links principais (opcional, pode adicionar conforme necessidade) */}
+          <div className="hidden md:flex items-center gap-8 text-white">
+            <Link to="/galeria" className="hover:text-primary">Galeria</Link>
+            <Link to="/videos" className="hover:text-primary">Vídeos</Link>
+            <Link to="/famosos" className="hover:text-primary">Famosos</Link>
+          </div>
 
           {/* Profile & Logout */}
           <div className="flex items-center gap-6">
@@ -33,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 <p className="text-sm font-medium text-white">{user?.name}</p>
                 <p className="text-xs text-zinc-500">Membro</p>
               </div>
-              <div className="w-14 h-14 bg-zinc-700 rounded-full overflow-hidden border-2 border-transparent hover:border-primary transition-all">
+              <div className="w-12 h-12 bg-zinc-700 rounded-full overflow-hidden border-2 border-transparent hover:border-primary transition-all">
                 <img 
                   src={`https://ui-avatars.com/api/?name=${user?.name || 'User'}&background=random`} 
                   alt="Profile" 
@@ -45,10 +52,10 @@ const Navbar: React.FC<NavbarProps> = () => {
             {/* Logout */}
             <button 
               onClick={logout}
-              className="p-4 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full transition-colors"
+              className="p-3 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full transition-colors"
               title="Sair"
             >
-              <LogOut className="h-8 w-8" />
+              <LogOut className="h-6 w-6" />
             </button>
           </div>
         </div>
