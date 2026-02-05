@@ -256,5 +256,4 @@ export const PACKS: Pack[] = [
   videos: [
     { id: 'v6-1', url: 'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_30mb.mp4', caption: 'Vídeo 1 do Lucas' }
   ]
-}
 ];
