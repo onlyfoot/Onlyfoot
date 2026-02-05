@@ -91,38 +91,59 @@ const PackDetail: React.FC<PackDetailProps> = ({ packs, purchasedSlugs, onPurcha
               )}
             </div>
 
-            {/* Thumbnails Grid */}
-            <div className="grid grid-cols-4 sm:grid-cols-5 gap-3">
-              {pack.photos?.map((photo, idx) => (
-                <div key={photo.id} className="relative aspect-square rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800">
-                  <img 
-                    src={photo.url} 
-                    alt={`Preview ${idx}`}
-                    className={`w-full h-full object-cover ${isPurchased ? 'cursor-pointer hover:opacity-80' : 'blur-md opacity-30'}`}
-                  />
-                  {!isPurchased && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Lock className="h-4 w-4 text-zinc-600" />
-                    </div>
-                  )}
-                </div>
-              ))}
-              {pack.videos?.map((video, idx) => (
-                <div key={video.id} className="relative aspect-square rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800">
-                  <video 
-                    src={video.url} 
-                    controls={isPurchased}
-                    className={`w-full h-full object-cover ${isPurchased ? '' : 'blur-md opacity-30'}`}
-                  />
-                  {!isPurchased && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Lock className="h-4 w-4 text-zinc-600" />
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+          {/* Thumbnails Grid */}
+<div className="space-y-8">
+  {/* Fotos */}
+  {pack.photos && pack.photos.length > 0 && (
+    <div>
+      <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+        <ImageIcon className="h-4 w-4" /> Fotos
+      </h3>
+      <div className="grid grid-cols-4 sm:grid-cols-5 gap-3">
+        {pack.photos.map((photo, idx) => (
+          <div key={photo.id} className="relative aspect-square rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800">
+            <img 
+              src={photo.url} 
+              alt={`Preview ${idx}`}
+              className={`w-full h-full object-cover ${isPurchased ? 'cursor-pointer hover:opacity-80' : 'blur-md opacity-30'}`}
+            />
+            {!isPurchased && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Lock className="h-4 w-4 text-zinc-600" />
+              </div>
+            )}
           </div>
+        ))}
+      </div>
+    </div>
+  )}
+
+  {/* Vídeos */}
+  {pack.videos && pack.videos.length > 0 && (
+    <div>
+      <h3 className="text-lg font-bold text-white mb-3 flex items-center gap-2">
+        <VideoIcon className="h-4 w-4" /> Vídeos
+      </h3>
+      <div className="grid grid-cols-4 sm:grid-cols-5 gap-3">
+        {pack.videos.map((video, idx) => (
+          <div key={video.id} className="relative aspect-square rounded-lg overflow-hidden bg-zinc-900 border border-zinc-800">
+            <video 
+              src={video.url} 
+              controls={isPurchased}
+              className={`w-full h-full object-cover ${isPurchased ? '' : 'blur-md opacity-30'}`}
+            />
+            {!isPurchased && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <Lock className="h-4 w-4 text-zinc-600" />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  )}
+</div>
+
 
           {/* Right Column: Purchase & Info */}
           <div className="lg:col-span-1">
@@ -219,33 +240,40 @@ const PackDetail: React.FC<PackDetailProps> = ({ packs, purchasedSlugs, onPurcha
         </div>
 
         {/* Unlocked Content Gallery */}
-        {isPurchased && (
-          <div className="mt-16 border-t border-zinc-800 pt-10">
-            <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-              <Unlock className="h-6 w-6 text-emerald-500" />
-              Galeria Desbloqueada
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {pack.photos?.map((photo) => (
-                <div key={photo.id} className="group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
-                  <img 
-                    src={photo.url} 
-                    alt={photo.caption}
-                    className="w-full aspect-[4/3] object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6">
-                    <p className="text-white font-medium text-lg mb-1">{photo.caption}</p>
-                    <div className="flex gap-3 mt-2">
-                      <button className="bg-white text-black text-sm font-bold py-2 px-4 rounded-lg flex items-center gap-2 hover:bg-zinc-200 transition-colors">
-                        <Download className="h-4 w-4" />
-                        Baixar
-                      </button>
-                      <button className="bg-black/50 backdrop-blur-md text-white text-sm font-bold py-2 px-4 rounded-lg border border-white/20 hover:bg-black/70 transition-colors">
-                        Visualizar
-                      </button>
-                    </div>
-                  </div>
-                </div>
+{isPurchased && (
+  <div className="mt-16 border-t border-zinc-800 pt-10 space-y-12">
+    {/* Fotos */}
+    {pack.photos && pack.photos.length > 0 && (
+      <div>
+        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+          <ImageIcon className="h-6 w-6 text-primary" /> Fotos
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {pack.photos.map(photo => (
+            <div key={photo.id} className="group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
+              <img src={photo.url} alt={photo.caption} className="w-full aspect-[4/3] object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* Vídeos */}
+    {pack.videos && pack.videos.length > 0 && (
+      <div>
+        <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+          <VideoIcon className="h-6 w-6 text-primary" /> Vídeos
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {pack.videos.map(video => (
+            <div key={video.id} className="group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
+              <video src={video.url} controls className="w-full aspect-[4/3] object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  </div>
               ))}
               {pack.videos?.map((video) => (
                 <div key={video.id} className="group relative bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800">
