@@ -11,7 +11,7 @@ export interface Creator {
   verified: boolean;
 }
 
-export interface Product {
+export interface Pack {
   id: string;
   creator: Creator;
   title: string;
