@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
-import logo from './Onlyfoot.png'; // importa a logo da pasta components
+import logo from './Onlyfoot.png'; // sua logo dentro de components
 
 interface NavbarProps {
   balance: number;
@@ -14,13 +14,13 @@ const Navbar: React.FC<NavbarProps> = ({ balance }) => {
   return (
     <nav className="sticky top-0 z-50 w-full bg-darker border-b border-zinc-800">
       <div className="max-w-5xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-20">
+          {/* Logo grande */}
           <Link to="/" className="flex items-center">
             <img 
               src={logo} 
               alt="Onlyfoot Logo"
-              className="h-10 w-auto" // ajusta o tamanho da logo
+              className="h-14 w-auto" // aumenta a altura da logo
             />
           </Link>
 
