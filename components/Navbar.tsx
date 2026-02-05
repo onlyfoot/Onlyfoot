@@ -5,43 +5,34 @@ import { useAuth } from '../context/AuthContext';
 import logo from './Onlyfoot.png'; // sua logo dentro de components
 
 interface NavbarProps {
-  balance: number; // mantido para compatibilidade futura
+  balance: number; // não usado, mas mantido para compatibilidade
 }
 
-const Navbar: React.FC<NavbarProps> = ({ balance }) => {
+const Navbar: React.FC<NavbarProps> = () => {
   const { logout, user } = useAuth();
 
   return (
-    <nav className="sticky top-0 z-50 w-full bg-dark-900 border-b border-dark-800">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* altura compacta */}
-        <div className="flex items-center justify-between h-20">
-          
-          {/* Logo */}
+    <nav className="sticky top-0 z-50 w-full bg-darker border-b border-zinc-800">
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="flex items-center justify-between h-48">
+          {/* Logo menor e alinhada à esquerda */}
           <Link to="/" className="flex items-center">
             <img 
               src={logo} 
               alt="Onlyfoot Logo"
-              className="h-14 w-auto"
+              className="h-20 w-auto" // metade do tamanho original
             />
           </Link>
 
-          {/* Links principais */}
-          <div className="hidden md:flex items-center gap-8 text-white font-medium">
-            <Link to="/galeria" className="hover:text-brand-500 transition-colors">Galeria</Link>
-            <Link to="/videos" className="hover:text-brand-500 transition-colors">Vídeos</Link>
-            <Link to="/famosos" className="hover:text-brand-500 transition-colors">Famosos</Link>
-          </div>
-
-          {/* Perfil & Logout */}
-          <div className="flex items-center gap-5">
-            {/* Perfil */}
+          {/* Profile & Logout */}
+          <div className="flex items-center gap-6">
+            {/* Profile */}
             <div className="flex items-center gap-3">
               <div className="text-right hidden sm:block">
                 <p className="text-sm font-medium text-white">{user?.name}</p>
-                <p className="text-xs text-gray-500">Membro</p>
+                <p className="text-xs text-zinc-500">Membro</p>
               </div>
-              <div className="w-10 h-10 bg-dark-700 rounded-full overflow-hidden border-2 border-transparent hover:border-brand-500 transition-all">
+              <div className="w-14 h-14 bg-zinc-700 rounded-full overflow-hidden border-2 border-transparent hover:border-primary transition-all">
                 <img 
                   src={`https://ui-avatars.com/api/?name=${user?.name || 'User'}&background=random`} 
                   alt="Profile" 
@@ -53,10 +44,10 @@ const Navbar: React.FC<NavbarProps> = ({ balance }) => {
             {/* Logout */}
             <button 
               onClick={logout}
-              className="p-2 text-gray-400 hover:text-white hover:bg-dark-800 rounded-full transition-colors"
+              className="p-4 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-full transition-colors"
               title="Sair"
             >
-              <LogOut className="h-6 w-6" />
+              <LogOut className="h-8 w-8" />
             </button>
           </div>
         </div>
