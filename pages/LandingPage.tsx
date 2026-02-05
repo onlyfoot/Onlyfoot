@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Heart, Lock, Star, ChevronDown, ShieldCheck, ArrowRight } from 'lucide-react';
 
 // --- Components ---
@@ -38,12 +39,18 @@ const Navbar = () => (
         SCARLET
       </div>
       <div className="flex items-center gap-6">
-        <button className="text-neutral-300 hover:text-brand-400 text-xs font-bold uppercase tracking-wide transition-colors">
+        <Link 
+          to="/register" 
+          className="text-neutral-300 hover:text-brand-400 text-xs font-bold uppercase tracking-wide transition-colors"
+        >
           Cadastro
-        </button>
-        <button className="px-6 py-2 bg-brand-700 hover:bg-brand-600 rounded-full text-xs font-bold uppercase tracking-wide transition-all shadow-[0_0_15px_-3px_rgba(225,29,72,0.4)]">
+        </Link>
+        <Link 
+          to="/login" 
+          className="px-6 py-2 bg-brand-700 hover:bg-brand-600 rounded-full text-xs font-bold uppercase tracking-wide transition-all shadow-[0_0_15px_-3px_rgba(225,29,72,0.4)]"
+        >
           Login
-        </button>
+        </Link>
       </div>
     </div>
   </nav>
@@ -132,7 +139,7 @@ const Gallery = () => {
               )}
             </div>
           ))}
-               </div>
+                </div>
         
         <div className="mt-12 text-center">
           <p className="text-neutral-500 italic mb-6">
@@ -160,6 +167,7 @@ const Features = () => (
             Novas fotos e vídeos postados todos os dias. Você nunca ficará sem novidades para apreciar.
           </p>
         </div>
+
         <div className="text-center p-6 rounded-2xl bg-neutral-950/50 border border-neutral-800 hover:border-brand-800 transition-colors duration-300">
           <div className="w-16 h-16 mx-auto bg-brand-900/20 rounded-full flex items-center justify-center mb-6 text-brand-500">
             <Heart className="w-8 h-8" />
@@ -169,6 +177,7 @@ const Features = () => (
             Realizo seus desejos específicos. Peça vídeos e fotos feitos sob medida para o seu gosto.
           </p>
         </div>
+
         <div className="text-center p-6 rounded-2xl bg-neutral-950/50 border border-neutral-800 hover:border-brand-800 transition-colors duration-300">
           <div className="w-16 h-16 mx-auto bg-brand-900/20 rounded-full flex items-center justify-center mb-6 text-brand-500">
             <Lock className="w-8 h-8" />
