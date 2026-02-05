@@ -16,9 +16,11 @@ const Navbar: React.FC<NavbarProps> = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="bg-primary rounded-full p-1.5">
-              <div className="w-4 h-4 border-2 border-white rounded-full"></div>
-            </div>
+            <img 
+              src="/logo.png" // coloque aqui o caminho da sua imagem
+              alt="Onlyfoot Logo"
+              className="h-8 w-auto" // ajusta o tamanho da logo
+            />
             <span className="text-xl font-bold text-white tracking-tight">
               Onlyfoot
             </span>
